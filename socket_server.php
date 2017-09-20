@@ -1,7 +1,7 @@
 <?php
 
 /******************************************************
-*							Socket server														*
+*          Socket server                              *
 ******************************************************/
 
 if(isset($INI)&&isset($INI['SocketServer']))$WSS_INI=$INI['SocketServer'];
@@ -75,7 +75,7 @@ function rawDataReceiveHandler($con,$str){
 	if(!isset($CONNECTS_DATA[$idx]))$CONNECTS_DATA[$idx]=array('Connected'=>false,'Resource'=> $con,'WriteBuffer'=>'','ReadBuffer'=> $str);
 	else $CONNECTS_DATA[$idx]['ReadBuffer'].=$str;
 	if(!$CONNECTS_DATA[$idx]['Connected']){
-		if(isset($CONNECTS_DATA[$idx]['Info']['Protocol']))$CONNECTS_DATA[$idx]['Info']=parseReplyToProtocolHandshake($CONNECTS_DATA[$idx]['ReadBuffer']);	//read buffer transferred by reference  ??????????
+		if(isset($CONNECTS_DATA[$idx]['Info']['Protocol']))$CONNECTS_DATA[$idx]['Info']=parseReplyToProtocolHandshake($CONNECTS_DATA[$idx]['ReadBuffer']);	//read buffer transferred by reference
 		else $CONNECTS_DATA[$idx]['Info']=parseProtocolHandshake($CONNECTS_DATA[$idx]['ReadBuffer']);	//read buffer transferred by reference
 		if($CONNECTS_DATA[$idx]['Info']===false)return false;
 		if(count($CONNECTS_DATA[$idx]['Info']) > 0){
