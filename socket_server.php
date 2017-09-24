@@ -116,10 +116,12 @@ function parseProtocolHandshake(&$msg){
 			$line=rtrim($headers[$i]);
 			if(preg_match('/\A(\S+): (.*)\z/', $line, $matches))$info[$matches[1]]=$matches[2];
 		}
-		if(!isset($info['Upgrade'])||strToLower($info['Upgrade'])!='websocket'||empty($info['Sec-WebSocket-Key']))return false;	//more checking can be added here		
-		$info['Protocol']='websocket server';
-		$msg='';
-		return $info;
+		if(isset($info['Upgrade'])&&strToLower($info['Upgrade'])=='websocket'){
+			if(empty($info['Sec-WebSocket-Key']))return false;	//more checking can be added here		
+			$info['Protocol']='websocket server';
+			$msg='';
+			return $info;
+		}
 	}
 	return array('Protocol'=>'raw');	//raw socket assumed;
 }
