@@ -20,9 +20,14 @@ There are four event functions, which are called in case of appropriate event: o
 
 Event functions are placed at the end of script. For now they just puts some info into STDOUT. They might be rewritten to make them  do something useful.
 
-###onConnect(array $inf, resource $con)
+###onConnect(array $inf, resource $con)]
+
 ###onMessage(array $msg, resource $con)
+
 ###onError(string $error_message, resource $con)
+
 ###onClose(resource $con)
+
 ###sendMessage(array or string $msg, resource $con)
+
 ###openClientConnection(string $target,$protocol='raw',$url='/',$host='127.0.0.1:8000',$orig='http://localhost')
