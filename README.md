@@ -20,14 +20,43 @@ There are four event functions, which are called in case of appropriate event: o
 
 Event functions are placed at the end of script. For now they just puts some info into STDOUT. They might be rewritten to make them  do something useful.
 
-###onConnect(array $inf, resource $con)]
+### void onConnect(array $inf, resource $con) - the function is called when new connection is established.
 
-###onMessage(array $msg, resource $con)
+  Arguments:
+  
+    $inf - array with some information regarding the connection. Consist of the array depends of connection type ($inf['Protocol']) 
+    
+        for the websocket server connection (when new client is connected):
+        
+        Array(
+                [method] => GET
+                [url] => /
+                [Host] => xxxxxxxxxx
+                [User-Agent] => xxxxxxxxx
+                [Accept] => text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+                [Accept-Language] => xxxxxxxxxxxx
+                [Accept-Encoding] => gzip, deflate
+                [Sec-WebSocket-Version] => 13
+                [Origin] => http://xxxxxxxxxx
+                [Sec-WebSocket-Extensions] => permessage-deflate
+                [Sec-WebSocket-Key] => xxxxxxxxxxxxxxxxxxxxxxx
+                [Connection] => keep-alive, Upgrade
+                [Upgrade] => websocket
+                [Protocol] => websocket server
+        )
+        
+        for the websocket client connection (when connected to the server):
+        for the raw socket server connection (when new client is connected):
+        for the raw socket client connection the function is not called.
+        
+    $con - resource representing the connection.
 
-###onError(string $error_message, resource $con)
+### onMessage(array $msg, resource $con)
 
-###onClose(resource $con)
+### onError(string $error_message, resource $con)
 
-###sendMessage(array or string $msg, resource $con)
+### onClose(resource $con)
 
-###openClientConnection(string $target,$protocol='raw',$url='/',$host='127.0.0.1:8000',$orig='http://localhost')
+### sendMessage(array or string $msg, resource $con)
+
+### openClientConnection(string $target,$protocol='raw',$url='/',$host='127.0.0.1:8000',$orig='http://localhost')
