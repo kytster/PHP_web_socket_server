@@ -26,7 +26,7 @@ Event functions are placed at the end of script. For now they just puts some inf
   
   $inf - array with some information regarding the connection. Consist of the array depends of connection type ($inf['Protocol']) 
     
-        for the websocket server connection (when new client is connected):
+    for the websocket server connection (when new client is connected):
         
           Array (
                   [method] => GET
