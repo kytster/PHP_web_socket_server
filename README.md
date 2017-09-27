@@ -20,7 +20,7 @@ There are four event functions, which are called in case of appropriate event: o
 
 Event functions are placed at the end of script. For now they just puts some info into STDOUT. They might be rewritten to make them  do something useful.
 
-### void onConnect(array $inf, resource $con) - the function is called when new connection is established.
+#### void onConnect(array $inf, resource $con) - the function is called when new connection is established.
 
   Arguments:
   
@@ -28,30 +28,45 @@ Event functions are placed at the end of script. For now they just puts some inf
     
         for the websocket server connection (when new client is connected):
         
-        Array(
-                [method] => GET
-                [url] => /
-                [Host] => xxxxxxxxxx
-                [User-Agent] => xxxxxxxxx
-                [Accept] => text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-                [Accept-Language] => xxxxxxxxxxxx
-                [Accept-Encoding] => gzip, deflate
-                [Sec-WebSocket-Version] => 13
-                [Origin] => http://xxxxxxxxxx
-                [Sec-WebSocket-Extensions] => permessage-deflate
-                [Sec-WebSocket-Key] => xxxxxxxxxxxxxxxxxxxxxxx
-                [Connection] => keep-alive, Upgrade
-                [Upgrade] => websocket
-                [Protocol] => websocket server
-        )
+          Array (
+                  [method] => GET
+                  [url] => /
+                  [Host] => xxxxxxxxxx
+                  [User-Agent] => xxxxxxxxx
+                  [Accept] => text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+                  [Accept-Language] => xxxxxxxxxxxx
+                  [Accept-Encoding] => gzip, deflate
+                  [Sec-WebSocket-Version] => 13
+                  [Origin] => http://xxxxxxxxxx
+                  [Sec-WebSocket-Extensions] => permessage-deflate
+                  [Sec-WebSocket-Key] => xxxxxxxxxxxxxxxxxxxxxxx
+                  [Connection] => keep-alive, Upgrade
+                  [Upgrade] => websocket
+                  [Protocol] => websocket server
+          )
         
         for the websocket client connection (when connected to the server):
+        
+          Array (
+                  [Upgrade] => websocket
+                  [Connection] => Upgrade
+                  [Sec-WebSocket-Accept] => Wwi5YhN+AEPMSbD/K0A4DFneKlU=
+                  [Protocol] => websocket client
+          )
+
         for the raw socket server connection (when new client is connected):
+        
+          Array (
+              [Protocol] => raw
+          )
+          
+            Note: in case of raw socket the fanction is called not when the socket accepts connection, but when the first data arrives.
+        
         for the raw socket client connection the function is not called.
         
-    $con - resource representing the connection.
+  $con - resource representing the connection.
 
-### onMessage(array $msg, resource $con)
+#### onMessage(array $msg, resource $con)
 
 ### onError(string $error_message, resource $con)
 
