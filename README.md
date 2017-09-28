@@ -71,16 +71,16 @@ Event functions are placed at the end of script. For now they just puts some inf
   
   Arguments:
   
-  **$msg** - array. Structure of array in case of websocket connection:
-    Array(
-      [final] => true or false //flag of the last frame in case of big message.
-      [type] => text or binary //type of frame 
-            //("close","ping", and "pong" frames are processed by the server and not call the onMessage function)
-      [data] => xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx //data received.
-    )
-    In case of raw socket connection the array contain obly the [data] key.
+    **$msg** - array. Structure of array in case of websocket connection:
+        Array(
+          [final] => true or false //flag of the last frame in case of big message.
+          [type] => text or binary //type of frame 
+                //("close","ping", and "pong" frames are processed by the server and not call the onMessage function)
+          [data] => xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx //data received.
+        )
+        In case of raw socket connection the array contain obly the [data] key.
     
-   **$con** - resource representing the connection.
+    **$con** - resource representing the connection.
 
 **onError(string $error_message, resource $con)**
 
