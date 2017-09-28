@@ -20,11 +20,11 @@ There are four event functions, which are called in case of appropriate event: o
 
 Event functions are placed at the end of script. For now they just puts some info into STDOUT. They might be rewritten to make them  do something useful.
 
-#### void onConnect(array $inf, resource $con) - the function is called when new connection is established.
+**void onConnect(array $inf, resource $con)** - the function is called when new connection is established.
 
   Arguments:
   
-  $inf - array with some information regarding the connection. Consist of the array depends of connection type ($inf['Protocol']) 
+  **$inf** - array with some information regarding the connection. Consist of the array depends of connection type ($inf['Protocol']) 
   
   for the websocket server connection (when new client is connected):
         
@@ -45,7 +45,7 @@ Event functions are placed at the end of script. For now they just puts some inf
                   [Protocol] => websocket server
           )
         
-        for the websocket client connection (when connected to the server):
+  for the websocket client connection (when connected to the server):
         
           Array (
                   [Upgrade] => websocket
@@ -54,24 +54,38 @@ Event functions are placed at the end of script. For now they just puts some inf
                   [Protocol] => websocket client
           )
 
-        for the raw socket server connection (when new client is connected):
+  for the raw socket server connection (when new client is connected):
         
           Array (
               [Protocol] => raw
           )
           
-            Note: in case of raw socket the fanction is called not when the socket accepts connection, but when the first data arrives.
+            Note: in case of raw socket the fanction is called not when the socket accepts connection, 
+                  but when the first data arrives (just before calling onMessage).
         
-        for the raw socket client connection the function is not called.
+  for the raw socket client connection the function is not called.
         
-  $con - resource representing the connection.
+  **$con** - resource representing the connection.
 
-#### onMessage(array $msg, resource $con)
+**onMessage(array $msg, resource $con)** - the function is called when new portion of data is arrived (in case of websocket connectioon the portion of data will be frame).
+  
+  Arguments:
+  
+  **$msg** - array. Structure of array in case of websocket connection:
+    Array(
+      [final] => true or false //flag of the last frame in case of big message.
+      [type] => text or binary //type of frame 
+            //("close","ping", and "pong" frames are processed by the server and not call the onMessage function)
+      [data] => xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx //data received.
+    )
+    In case of raw socket connection the array contain obly the [data] key.
+    
+   **$con** - resource representing the connection.
 
-### onError(string $error_message, resource $con)
+**onError(string $error_message, resource $con)**
 
-### onClose(resource $con)
+**onClose(resource $con)**
 
-### sendMessage(array or string $msg, resource $con)
+**sendMessage(array or string $msg, resource $con)**
 
-### openClientConnection(string $target,$protocol='raw',$url='/',$host='127.0.0.1:8000',$orig='http://localhost')
+**openClientConnection(string $target,$protocol='raw',$url='/',$host='127.0.0.1:8000',$orig='http://localhost')**
