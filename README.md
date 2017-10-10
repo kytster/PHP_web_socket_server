@@ -91,12 +91,18 @@ Event functions are placed at the end of script. For now they just puts some inf
   
   **$con** - resource, representing the connection. onError function should not close the connection, the connection will be closed automatically.
 
-**onClose(resource $con)** - the function is called just before the connection is closed. 
+<u>**onClose(resource $con)**</u> - the function is called just before the connection is closed. 
 
   Arguments:
   
   **$con** - resource, representing the connection.
 
-**sendMessage(array or string $msg, resource $con)**
+**sendMessage(array or string $msg, resource $con)** - sends data via established socket connection in accordance with the protocol (websocket or raw) assigned for the connection.
+
+  Arguments:
+  
+  **$msg** - array or string, data to send. If $msg is array then $msg['data'] is treated as actual data to send.
+  
+  **$con** - resource, representing the connection.
 
 **openClientConnection(string $target,$protocol='raw',$url='/',$host='127.0.0.1:8000',$orig='http://localhost')**
