@@ -111,5 +111,22 @@ API functions are placed at the end of script. Event functions, for now, just pu
   
   _string error_message_ - an error occurred while encoding message, or connection is already broken.
   
- **resource/string openClientConnection(string $target,$protocol='raw',$url='/',
-        $host='127.0.0.1:8000',$orig='http://localhost')**
+ **resource/string openClientConnection(string $target,$protocol='raw',$url='/',$host='127.0.0.1:8000',$orig='http://localhost')** - opens new client connection (either web socket or raw).
+ 
+ Arguments:
+ 
+ _**$target**_ - 
+ 
+ _**$protocol**_ -
+ 
+ _**$url**_ -
+ 
+ _**$host**_ -
+ 
+ _**$orig**_ - 
+ 
+ Returned value:
+ 
+ _resource_ - 
+ 
+ _string error_message_ - 
