@@ -115,18 +115,18 @@ API functions are placed at the end of script. Event functions, for now, just pu
  
  Arguments:
  
- _**$target**_ - 
+ _**$target**_ (string, mandatory) - address:port of the server to connect to;
  
- _**$protocol**_ -
+ _**$protocol**_ (srting 'raw' / 'websocket', optional, 'raw' by default) - specifies kind of socket to open;
  
- _**$url**_ -
+ _**$url**_ (string, optional, '/' by default) - url header for websocket handshake request;
  
- _**$host**_ -
+ _**$host**_ (string, optional, '127.0.0.1:8000' by default) - Host header for websocket handshake request;
  
- _**$orig**_ - 
+  _**$orig**_ (string, optional, 'http://localhost' by default) - Origin header for websocket handshake request;
  
  Returned value:
  
- _resource_ - 
+ _resource_ - if connection established reference to the opened socket resource is returned. _**Note:**_ in case of websocket connection it means that handshake request is sent;
  
- _string error_message_ - 
+ _string error_message_ - in case of error string with the error message is returned.
